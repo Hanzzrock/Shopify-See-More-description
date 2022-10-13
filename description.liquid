@@ -1,0 +1,56 @@
+      {% assign my_description = product.description | split: '[break-content]'  %}
+       
+
+<div class="product-description-short lessmore">
+{% if product.description.size > 1000 %}
+{{ my_description[0] | truncate: 1000, '<div class="hidden-content"></div>' }} 
+{% endif %} 
+<a href="#" class="readmore"><i class="fa fa-angle-down"></i><span class="see-more-text">See More </span> </a></div> 
+
+<div class="product-description-full">
+
+
+<p>{{ my_description[0]}}</p>
+
+
+<div class="lessmore"><a href="#" class="readless"><i class="fa fa-angle-up"></i><span class="see-more-text">See Less </span></a></div> </div>
+
+ <script>
+            $( ".product-description-full" ).hide();
+        
+          $( document ).ready(function() {
+          $('.readmore').click(function (event) {
+              event.preventDefault();
+              var descriptionFull = document.querySelector('.product-description-full');
+              descriptionFull.style.display = 'block';
+              var descriptionShort = document.querySelector('.product-description-short');
+              descriptionShort.style.display = 'none';
+                    });
+            $('.readless').click(function (event) {
+              event.preventDefault();
+              var descriptionFull = document.querySelector('.product-description-full');
+              descriptionFull.style.display = 'none';
+              var descriptionShort = document.querySelector('.product-description-short');
+              descriptionShort.style.display = 'block';
+            });  
+            });
+</script>
+<style>
+  .hidden-content {
+    height: 14px;
+    background: -webkit-linear-gradient(top,rgba(255,255,255,0),#fff);
+    background: linear-gradient(to bottom,rgba(255,255,255,0),#fff);
+    width: 100%;
+    position: relative;
+    margin-top: -34px;
+    left: 0;
+    margin-bottom: 5px;
+}
+span.see-more-text {
+    margin-left: 10px;
+    color: #007185;
+}
+a.readmore {
+    text-decoration: none !important;
+}
+</style>
